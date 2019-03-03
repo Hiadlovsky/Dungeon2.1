@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-
+    // V2
     public static MonsterList monsterList = new MonsterList();
     public static ItemList itemsList = new ItemList();
     public static Character player = new Character();
@@ -181,6 +181,8 @@ public class Main {
                 break;
 
         }
+
+        System.out.println(current.getStr()+" "+current.getDex()+" "+current.getVit());   // testing
         System.out.println(current.evaluateItem());
         if (tH) {
             ifTH = player.getLeft();
@@ -227,7 +229,7 @@ public class Main {
         System.out.println("Name: " + player.getName() + "\n" +
                 "____________________________\n" +
                 "LEVEL:" + player.getLevel() + "\n" +
-                "XP:"+player.getxP()+"/"+50*(player.getLevel()+1) + "\n" +
+                "XP:"+player.getxP()+"/"+player.nexLevelXP() + "\n" +
                 "STR:" + player.getStr() + "(" + player.strBonus() + ")\n" +
                 "DEX:" + player.getDex() + "(" + player.dexBonus() + ")\n" +
                 "VIT:" + player.getVit() + "(" + player.vitBonus() + ")\n" +
@@ -271,12 +273,13 @@ public class Main {
     public static void fight2() {
 
         Monster monster = monsterList.monsterSpawn(player.getLevel());
-        int fullHp = (player.getVit()+player.vitBonus())*100;// opravit po boji s prehrou sa urci zostatok ako full HP
+        int fullHp = (player.getVit()+player.vitBonus())*100;
         int monsterHp = monster.gethP();
         int monsterVIT = monster.getVit();
         int monsterFullHP = monster.gethP();
         String monsterName = monster.getName();
         boolean dead = false;
+        Item found = new Item();
 
         System.out.println("Yo found:\n" + monster.evaluateEnemy());
         boolean run = run(monster);
@@ -318,21 +321,22 @@ public class Main {
 
           if (monsterHp==0){
               if (player.levelUP(monster.getxP())) {
+                  System.out.println("LEVEL UP");
                   levelUP();
               }
               System.out.println("Loot " + monster.getName() + " corps.\nY/N.");
               if (yesNO()) {
-                  int roll = ((int) (Math.random() * 56 + 1));  // problem ? was 3
+                  int roll = ((int) (Math.random() * 56 + 1));  // problem ? roll was 3
                   if (roll  >3) {   // was == 3
-                      Item found = itemsList.lootSpawn(player.getLevel());
+                       found = itemsList.lootSpawn(player.getLevel());
                       itemSwap(found);
                   }else {
                       System.out.println("Nothing.");
+                       character();                                    // TESTING HP problem
                   }
               }
 
-              System.out.println(player.getName()+" Level:"+ player.getLevel()+", "+player.getxP()+"/"+50*(player.getLevel()+1)+"XP.");
-          }
+              System.out.println(player.getName()+" Level:"+ player.getLevel()+", "+player.getxP()+"/"+player.nexLevelXP());           }
         }
 
     }

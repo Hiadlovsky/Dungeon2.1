@@ -9,6 +9,9 @@ public class Item {
     private String equip;
 
 
+    public Item() {
+    }
+
     public Item(String name, int str, int dex, int vit, String equip) {
         this.name = name;
         this.str = str;

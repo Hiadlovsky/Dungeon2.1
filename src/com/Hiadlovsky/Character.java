@@ -30,7 +30,9 @@ public class Character {
         this.levelUpPoints = 15;
         this.level = 0;
         this.xP = 0;
-
+        this.left = new Item();
+        this.right = new Item();
+        this.chest = new Item();
 
 
 
@@ -51,12 +53,12 @@ public class Character {
     }
 
 
-     public boolean levelUP (int xP){ // in fight call if true
+     public boolean levelUP (int xP){
         this.xP = this.xP+xP;
-        int temp = this.level+1;    // ak 0 tak = 1 ak 1 tak =2        3
 
-        if (this.xP>50*temp){      //            50          100         150
-            this.level =temp;     //       1                 2           3
+
+        if (this.xP>nexLevelXP()){
+            this.level =this.level+1;
             levelUP();
             return true;
         }
@@ -66,6 +68,22 @@ public class Character {
         this.levelUpPoints = this.levelUpPoints+15;
     }
 
+
+    public int nexLevelXP(){
+        int temp = this.level+1;
+        int nextLevel;
+         if (this.level>12){
+             nextLevel = (1000*temp);
+         } else if (this.level>8){
+            nextLevel= (500*temp);
+        }else if(this.level>5){
+            nextLevel= (100*temp);
+        }else {
+               nextLevel = (50 * temp);
+           }
+
+          return nextLevel;
+    }
 
 
 
@@ -90,9 +108,7 @@ public class Character {
 
 
     public boolean levelDistribution(int statChoice, int statsToAdd) {
-        if (this.level > 1) {
-         //   this.level = this.level + 1;            leveling problems in code
-        }
+
         if (statsToAdd>this.levelUpPoints){
             return false;
         }
@@ -115,7 +131,7 @@ public class Character {
 
 
     public void equipItem (Item equipItem,Item empty){
-
+         int currentVitBonus = vitBonus()*100;
 
         if (equipItem.getEquip().equals("R")){
             this.right = equipItem;
@@ -128,7 +144,9 @@ public class Character {
             this.left = empty;
 
         }
-        this.hP = this.hP+(vitBonus()*100);
+
+        this.hP = this.hP+((vitBonus()*100)-currentVitBonus);
+
     }
 
 

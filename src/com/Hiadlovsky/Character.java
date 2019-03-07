@@ -13,19 +13,8 @@ public class Character {
     private int hP;
     private int levelUpPoints;
     private int xP;
-/*//                                       test-------------------
-    public void setLeft(Item left) {
-        this.left = left;
-    }
 
-    public void setRight(Item right) {
-        this.right = right;
-    }
 
-    public void setChest(Item chest) {
-        this.chest = chest;
-    }
-//                                        test -----------------*/
     public Character() {
         this.levelUpPoints = 15;
         this.level = 0;
@@ -33,16 +22,6 @@ public class Character {
         this.left = new Item();
         this.right = new Item();
         this.chest = new Item();
-
-
-
-
-
-
-
-
-
-
 
     }
     public void inventoryStart (Item item){

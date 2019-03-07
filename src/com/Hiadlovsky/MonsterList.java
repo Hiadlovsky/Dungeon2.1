@@ -34,7 +34,6 @@ public class MonsterList {
 
     public Monster monsterSpawn (int playerLevel){
         int diceRoll = ((int) (Math.random() * 54 + 1));
-        System.out.println(diceRoll);//                               work info
         Monster spawn;
         if (diceRoll==54) {
             spawn = this.monsters.get(8);

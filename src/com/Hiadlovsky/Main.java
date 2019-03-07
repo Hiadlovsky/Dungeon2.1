@@ -14,15 +14,6 @@ public class Main {
         monsterList.addMonsters();
         itemsList.addItems();
 
-     /*   Item a = itemsList.lootSpawn(1);
-        player.setRight(itemsList.getEmpty());
-        player.setLeft(itemsList.getEmpty());
-        player.setChest(itemsList.getEmpty());
-
-        itemSwap(a);
-         a = itemsList.lootSpawn(1);
-        itemSwap(a);*/
-
         System.out.println("Enter the DOOM dungeon");
          doom();
 
@@ -158,7 +149,7 @@ public class Main {
     public static void itemSwap(Item found) {
 
         Item empty = itemsList.getEmpty();
-        String placement = found.getEquip();   // R
+        String placement = found.getEquip();
         Item current;
         boolean tH = false;
         Item ifTH;
@@ -332,7 +323,7 @@ public class Main {
                       itemSwap(found);
                   }else {
                       System.out.println("Nothing.");
-                       character();                                    // TESTING HP problem
+                       character();
                   }
               }
 

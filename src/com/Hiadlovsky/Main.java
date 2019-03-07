@@ -172,8 +172,7 @@ public class Main {
                 break;
 
         }
-
-        System.out.println(current.getStr()+" "+current.getDex()+" "+current.getVit());   // testing
+        
         System.out.println(current.evaluateItem());
         if (tH) {
             ifTH = player.getLeft();
